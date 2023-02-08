@@ -77,5 +77,3 @@ the user can pay throuw credit cards or PayPal.
                   - Frontend: Bootstrap
                   - Backend: asp.net core 6 mvc
                   
-## Entity Relationships Diagram
-![My animated logo](ERD.png)
