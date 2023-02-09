@@ -20,10 +20,22 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+
+                            <a class="nav-link text-dark" asp-route-id="menn" asp-area="" asp-controller="Customer" asp-action="Index" style="font-family:'Times New Roman'">Menn</a>
+
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                            <a class="nav-link text-dark" asp-route-id="women" asp-area="" asp-controller="Customer" asp-action="Index" style="font-family:'Times New Roman'">Women</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-route-id="babies" asp-area="" asp-controller="Customer" asp-action="Index" style="font-family:'Times New Roman'">Babies</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-route-id="accessories" asp-area="" asp-controller="Customer" asp-action="Index" style="font-family:'Times New Roman'">Accessories</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Customer" asp-action="MyOrders" style="font-family:'Times New Roman'">My orders</a>
                         </li>
                     </ul>
                     <partial name="_LoginPartial" />

@@ -1,5 +1,130 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿@model Product
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<div class="container" style="width:1000px; height:1000px; margin-top:50px; ">
+	<div class="row">
+		<div class="col">
+			<span >
+				<img src="@Model.Image" style="width:500px; height:500px;"/>
+			</span>
+		</div>
+		<div class="col">
+			<h3 style="color: orange;">@Model.Price kr</h3>
+			<div>
+				<p></p>
+				<div class="col-md-6 col-12">
+					<div class="mb-4 border-bottom pb-2">
+						<h4 class="mb-0">Quantity</h4>
+					</div>
+					<div class="row">
+						<div class="col-12">
+							<div class="d-flex justify-content-between">
+								
+								<div class="input-group w-auto justify-content-end align-items-center" style="position: absolute; margin-bottom:20px;">
+									<input type="button" value="-" class="button-minus border rounded-circle  icon-shape icon-sm mx-1 " data-field="quantity">
+									<input type="number" step="1" max="10" value="1" name="quantity" class="quantity-field border-0 text-center w-25">
+									<input type="button" value="+" class="button-plus border rounded-circle icon-shape icon-sm " data-field="quantity">
+								</div>
+							</div>
+						</div>
+						<br/>
+						 
+						<h2>Details</h2>
+						<div>
+							<p style="margin-top:20px;">@Model.Details</p>
+						</div >
+						<br/>
+						<div class="row">
+								@if (@Model.Shipping == 0)
+						{
+							<p class="card-text" style="color:green">Free shipping</p>
+						}
+						else
+						{
+							<p class="card-text" style="color:green">Shipping fee @Model.Shipping kr</p>
+						}
+
+							<div class="d-flex flex-row user-ratings">
+								<div class="ratings">
+									@if (Model.Rating > 0)
+									{
+										for (int i = 0; i < Model.Rating; i++)
+										{
+											<span class="fa fa-star checked"></span>
+										}
+										if (Model.Rating < 5)
+										{
+											int rest = 5 - Model.Rating;
+											for (int i = 0; i < rest; i++)
+											{
+												<span class="fa fa-star"></span>
+											}
+										}
+
+									}
+									else
+									{
+										<span class="fa fa-star"></span>
+										<span class="fa fa-star"></span>
+										<span class="fa fa-star"></span>
+										<span class="fa fa-star"></span>
+										<span class="fa fa-star"></span>
+									}
+								</div>
+
+						</div>
+					
+						</div>
+					</div>
+					<div class="w-100"></div>
+					<div class="col"></div>
+					<div class="col">
+						<form method="post" asp-action="Cart">
+							<input type="hidden" value="@Model.Id" name="id"></input>
+								<div><button type="submit" class="cart-btn">Add to cart</button></div>
+						</form>
+							
+
+					</div>
+				</div>
+
+</div>
+
+<script>
+			function incrementValue(e) {
+				e.preventDefault();
+				var fieldName = $(e.target).data('field');
+				var parent = $(e.target).closest('div');
+				var currentVal = parseInt(parent.find('input[name=' + fieldName + ']').val(), 10);
+
+				if (!isNaN(currentVal)) {
+					parent.find('input[name=' + fieldName + ']').val(currentVal + 1);
+				} else {
+					parent.find('input[name=' + fieldName + ']').val(0);
+				}
+			}
+
+			function decrementValue(e) {
+				e.preventDefault();
+				var fieldName = $(e.target).data('field');
+				var parent = $(e.target).closest('div');
+				var currentVal = parseInt(parent.find('input[name=' + fieldName + ']').val(), 10);
+
+				if (!isNaN(currentVal) && currentVal > 0) {
+					parent.find('input[name=' + fieldName + ']').val(currentVal - 1);
+				} else {
+					parent.find('input[name=' + fieldName + ']').val(0);
+				}
+			}
+
+			$('.input-group').on('click', '.button-plus ', function (e) {
+				incrementValue(e);
+			});
+
+			$('.input-group').on('click', '.button-minus', function (e) {
+				decrementValue(e);
+			});
+
+		
+</script>

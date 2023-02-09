@@ -2,7 +2,89 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+
+
+
+<div class="header">
+	<h1>Good price for good quality</h1>
+	<p>Shop smart</p>
 </div>
+
+<div class="container-fluid padding">
+	<div class="row padding">
+		<div class="col-lg-6">
+			<h2>Our Philosophy</h2>
+			<p>
+				OutFit’s team of designers, made up of more than 200 professionals, continuously assessing the customers´ preferences, wishes and demands offering each year comprised some 12,000 different models for sale in its stores. The availability of the factories owned by the company, together with a wide range of highly experienced external suppliers who have a solid commercial relationship with the format, allow OutFit to manufacture a model and to have it for sale in its stores worldwide within the average term of approximately two weeks.
+			</p>
+			<p>
+				Garments, both the in-house manufactured and those purchased from external suppliers, arrive at the hubs OutFit has in Spain, wherefrom they are dispatched to the stores worldwide. Clothes are dispatched twice a week, and this frequency allows a continual renewal of our fashion offer.
+			</p>
+			<p>
+				OutFit sells three lines of items, for women, men and children. Each of them has its own independent creative team who carries out the fashion proposals for each campaign. That is why their customers may find in OutFit stores, located at the major shopping streets of more than 500 cities in the world, a high quality fashion proposal that takes into account the latest trends at affordable prices.
+			</p>
+			<br>
+		</div>
+		<div class="col-lg-6">
+			<img src="~/media/middle.jpeg" class="img-fluid"></img>
+
+
+		</div>
+	</div>
+</div>
+
+<div class="space"></div>
+
+<div class="row">
+	<div class="column">
+		<div class="categ" style="font-weight: 800;">Menn outfits</div>
+				<a asp-area="" asp-controller="Customer" asp-action="Index" asp-route-id="menn">
+						<img src="/media/men.png" alt="Menn" style="width:100%">
+				</a>
+	
+	</div>
+	<div class="column">
+		<div class="categ" style="font-weight: 800;">Women outfit</div>
+		
+		<a asp-area="" asp-controller="Customer" asp-action="Index" asp-route-id="women"><img src="/media/women.png" alt="Women" style="width:100%"></a>
+	
+	</div>
+	<div class="column" style="font-weight: 800;">
+		<div class="categ">Babies outfits</div>
+		<a asp-area="" asp-controller="Customer" asp-action="Index" asp-route-id="babies">
+			<img src="/media/baby.png" alt="Babies" style="width:100%">
+		</a>
+
+		
+	</div>
+</div>
+
+<footer>
+	<div class="container-fluid padding">
+		<div class="row text-center">
+			<div class="col-md-6">
+				<img src="/media/logosit.png" width="200px">
+				<hr class="light">
+				<p>93497708</p>
+				<p>info@outfitshop.no</p>
+				<p>Barbudalen 52</p>
+				<p>4846 Arendal</p>
+			</div>
+			<div class="col-md-6">
+				<hr class="light">
+				<h5>Opening hours</h5>
+				<hr class="light">
+				<p>Monday-Friday: 8:00-16:00</p>
+				<p>Saturday: 10:00-16:00</p>
+				<p>Sunday: closed</p>
+			</div>
+		</div>
+	</div>
+
+	<div class="container">
+		&copy; 2023 - OutFieShop - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+	</div>
+
+</footer>
+
+

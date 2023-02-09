@@ -1,5 +1,65 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿@model IEnumerable<Product>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<br/>
+
+
+<div class="row">
+    @foreach (var product in Model)
+    {
+        <div class="card" style="width: 18rem;">
+            <img src="@product.Image" class="card-img-top" alt="...">
+
+            <div>
+                <div class="card-body">
+                    <h5 class="card-title" style=" font-size:40px; color:red !important;">
+                        @product.Title
+                    </h5>
+                    <h6 class="card-title">@product.Price</h6>
+                    <div class="d-flex flex-row user-ratings">
+                        <div class="ratings">
+                            @if(product.Rating > 0){
+                                for(int i = 0; i < product.Rating; i++){
+                                    <span class="fa fa-star checked"></span>
+                                }
+                                if(product.Rating < 5){
+                                    int rest = 5 - product.Rating;
+                                    for (int i = 0; i < rest; i++)
+                                    {
+                                        <span class="fa fa-star"></span>
+                                    }
+                                }
+                              
+                            }else{
+                                <span class="fa fa-star"></span>
+                                <span class="fa fa-star"></span>
+                                <span class="fa fa-star"></span>
+                                <span class="fa fa-star"></span>
+                                <span class="fa fa-star"></span>
+                            }
+                        </div>
+                        <h6 class="text-muted ml-1" style="margin:3px;">@product.Rating/5</h6>
+                    </div>
+                    <p class="card-text">@product.Details.Substring(0,20)</p>
+                    @if(product.Shipping == 0){
+                        <p class="card-text" style="color:green">Free shipping</p>
+                    }else{
+                        <p class="card-text" style="color:green">Shipping fee @product.Shipping kr</p>
+                    }
+                    <a asp-area="" asp-controller="Customer" asp-action="Details" asp-route-id="@product.Id" class="btn btn-danger">Show</a>
+                    <br />
+                    <br />
+                   
+
+                </div>
+
+
+            </div>
+        </div>
+        <br />
+    }
+
+</div>
+   
+

@@ -1,4 +1,5 @@
 using ClothStore.Data;
+using ClothStore.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -10,11 +11,21 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
+    .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
+
+using (var service = app.Services.CreateScope())
+{
+    var db = service.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+    var um = service.ServiceProvider.GetRequiredService<UserManager<ApplicationUser>>();
+    var rm = service.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+    ApplicationDbInitializer.Initializer(db, um, rm);
+}
+
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

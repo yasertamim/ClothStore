@@ -1,0 +1,57 @@
+﻿@using Newtonsoft.Json
+@model IEnumerable<Cart>
+
+
+    <h2>Your Shopping cart</h2>
+
+
+
+	@foreach(var c in Model){
+
+
+		foreach(var p in c.Products ){
+
+        <table class="table">
+            <thead>
+                <tr>
+                    
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr >
+                 
+                    <td><img src="@p.Image" style="width:100px; height:100px;"/></td>
+                    <td >@p.Title</td>
+                    <td>@p.Amount</td>
+                    <td style="color:orange;">@p.Price kr</td>
+                    <td>
+                        <a asp-area="" asp-controller="Customer" asp-action="DeleteItem" asp-route-id="@p.Id" class="btn btn-danger">Delete</a>
+                      
+                    </td>
+                </tr>
+               
+            </tbody>
+        </table>
+     
+		}
+	}
+
+    @if (Model != null)
+    {
+        <form method="post" asp-area="" asp-action="PlaceOrder" asp-controller="Customer">
+        <input type="hidden" name="id" value="@Model.FirstOrDefault().Id">
+            <button class="cart-btn" type="submit">Place order</button>
+        </form>
+
+
+      
+    }
+    else
+    {
+        <h1>Your shopping cart is empty!!</h1>
+    }

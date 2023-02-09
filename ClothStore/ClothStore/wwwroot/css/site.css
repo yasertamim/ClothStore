@@ -1,18 +1,220 @@
 html {
-  font-size: 14px;
+    font-size: 14px;
 }
 
 @media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+    html {
+        font-size: 16px;
+    }
 }
 
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
 }
 
 body {
-  margin-bottom: 60px;
+    margin-bottom: 60px;
+}
+
+
+.header {
+    padding: 80px;
+    text-align: center;
+    background: url(/media/fashion-768x512.jpeg);
+    color: white;
+    width: 100%;
+    height: 500px;
+    z-index: 0;
+}
+
+    /* Increase the font size of the h1 element */
+    .header h1 {
+        font-size: 40px;
+    }
+
+
+footer {
+    background-color: #3f3f3f;
+    color: #d5d5d5;
+    padding-top: 2rem;
+    width: 100%
+}
+
+hr.light {
+    border-top: 2px solid #d5d5d5;
+    width: 75%;
+    margin-top: .8rem;
+    margin-bottom: .1rem;
+}
+
+.space {
+    height: 40px;
+}
+
+.row {
+    display: flex;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+.column {
+    text-align: center;
+    position: relative;
+    flex: 33.33%;
+    padding: 15px;
+    color: white;
+    transition: transform .2s; /* Animation */
+}
+
+    .column:hover {
+        transform: scale(1.1); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+    }
+
+.nav-item {
+    transition: transform .2s;
+    color: orangered;
+}
+
+    .nav-item:hover {
+        transform: scale(1.1); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+    }
+
+
+.row padding {
+    margin-top: 30px;
+}
+
+.categ {
+    font-size: 40px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.card {
+    margin: 30px;
+}
+
+.price {
+    color: chocolate;
+}
+
+.row-cols-2 {
+    width: 500px;
+    margin: 0 auto;
+    padding: 15px;
+    display: flex;
+}
+
+.left-column {
+    width: 65%;
+    margin-right: 200px;
+    position: relative;
+}
+
+.right-column {
+    width: 35%;
+    margin-top: 60px;
+}
+
+.left-column img {
+    flex-shrink: 0;
+    min-width: 100%;
+    min-height: 100%
+}
+
+    .left-column img.active {
+        opacity: 1;
+    }
+
+.product-description {
+    border-bottom: 1px solid #E1E8EE;
+    margin-bottom: 20px;
+}
+
+    .product-description h1 {
+        font-weight: 300;
+        font-size: 52px;
+        color: #43484D;
+        letter-spacing: -2px;
+    }
+
+    .product-description p {
+        font-size: 16px;
+        font-weight: 300;
+        color: #86939E;
+        line-height: 24px;
+    }
+
+.cart-btn {
+    display: inline-block;
+    background-color: #7DC855;
+    border-radius: 6px;
+    font-size: 16px;
+    color: #FFFFFF;
+    text-decoration: none;
+    padding: 12px 30px;
+    transition: all .5s;
+}
+
+.cart {
+    color: chocolate;
+    width: 30px;
+    height: 30px;
+    margin-top: 0px;
+    margin-bottom: 30px;
+}
+
+.count {
+    width: 20px;
+    height: 20px;
+    padding-bottom: 3px;
+    text-align: center;
+    color: white;
+    background-color: orangered;
+    border-radius: 50%;
+}
+
+#cartCount {
+    border-radius: 50%;
+}
+
+}
+
+
+.nav-item {
+    font-family: 'Times New Roman';
+}
+
+
+
+.card {
+    margin: 30px;
+}
+.price {
+    color: chocolate;
+}
+
+.checked {
+    color: orange;
+}
+
+icon-shape {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.icon-sm {
+    width: 2rem;
+    height: 2rem;
+}
+
+td {
+    text-align: center;
+    vertical-align: middle;
 }
