@@ -25,9 +25,9 @@
 
         public string Image { get; set; } = string.Empty;
 
-        public int Amount { get; set; } = 0;
+        public int Amount { get; set; } = 1;
 
-        public decimal Shipping { get; set; } = 0;
+        public decimal Shipping { get; set; }
 
         public int Rating { get; set; } = 0;
 

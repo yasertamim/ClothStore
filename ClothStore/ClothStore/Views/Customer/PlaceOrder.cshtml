@@ -5,71 +5,6 @@
 <h1>Complete your purchase</h1>
 
 
-<div class="wrapper">
-    <div class="checkout container">
-        <form id="payment-form" method="post" >
-            @Html.HiddenFor(n => n.Id)
-
-            <div class="card" style="width: 18rem;">
-                <img src="/media/logosit.png" class="card-img-top" alt="...">
-
-                <div>
-                    <div class="card-body">
-                        <h5 class="card-title">@Model.Id</h5>
-                        <h6 class="card-title">@Model.OrderTime</h6>
-
-                    
-                        <p class="card-text">@Model.Total</p>
-
-                    </div>
-
-                </div>
-            </div>
-            <hr />
-            <button class="btn btn-success" type="submit"><span>Confirm payment - @Model.Total</span></button>
-            <section>
-                <div class="bt-drop-in-wrapper">
-                    <div id="bt-dropin"></div>
-                </div>
-            </section>
-        </form>
-    </div>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-@*
     <div class="card" style="width: 18rem;">
         <div class="card-body">
             <h5 class="card-title">Your Order</h5>
@@ -78,7 +13,7 @@
                     <h4>Products</h4>
                 </div>
                 <div class="col">
-                    <p>@Model.Total</p>
+                    <p>@Model.Total kr</p>
                 </div>
             </div>
         <div class="row">
@@ -86,21 +21,39 @@
                 <h4>Shipping </h4>
             </div>
             <div class="col">
-                <p>Free</p>
+                @if (@Model.ShippingTotal == 0)
+                {
+                    <p class="card-text" >Free shipping</p>
+                }
+                else
+                {
+                    <p class="card-text">@Model.ShippingTotal kr</p>
+                }
             </div>
         </div>
         <div class="row">
             <div class="col">
+               
                 <h4>Total</h4>
             </div>
             <div class="col">
-                <p>@Model.Total</p>
+                @if (Model.ShippingTotal == 0)
+                {
+                    <p>@Model.Total kr</p>
+                }
+                else{
+                    var ToPay = Model.Total + Model.ShippingTotal;
+                    <p>@ToPay  kr</p>
+                }
+               
             </div>
         </div>
             <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-            <a href="#" class="btn-cart">Pay</a>
+        <form method="post" asp-area="" asp-action="PlaceOrder" asp-controller="Customer">
+            <input type="hidden" name="id" value="@Model.Id">
+            <button class="cart-btn" type="submit">Confirm Payment @Model.Topay</button>
+        </form>
         </div>
     </div>
 
 
-*@

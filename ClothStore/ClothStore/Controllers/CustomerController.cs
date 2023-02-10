@@ -207,7 +207,7 @@ namespace ClothStore.Controllers
 
                 _db.Products.Update(product);
                 await _db.SaveChangesAsync();
-
+                ViewData["count"] = cartInit.Products.Count;
 
 
                 // return RedirectToAction("Index");
@@ -302,6 +302,55 @@ namespace ClothStore.Controllers
             return View(orderDb);
         }
 
+
+
+        [HttpGet]
+        [Authorize]
+        //get the view to delete the selected post
+        public async Task<IActionResult> DeleteItem(int? id)
+        {
+            if (id == 0 )
+            {
+                return NotFound();
+            }
+
+            var product = await _db.Products.FirstOrDefaultAsync(p => p.Id.Equals(id));
+
+            if (product != null)
+            {
+                return View(product);
+            }
+     
+
+            return View(new Product());
+        }
+
+
+
+        [HttpPost]
+        [Authorize]
+        //get the view to delete the selected post
+        public async Task<IActionResult> DeleteItem(int id)
+        {
+            if (id == 0 || id == null)
+            {
+                return NotFound();
+            }
+
+            var product = await _db.Products.FirstOrDefaultAsync(p => p.Id.Equals(id));
+
+            if (product != null)
+            {
+
+                product.CartId = null;
+                _db.Products.Update(product);
+                await _db.SaveChangesAsync();
+                return RedirectToAction("ShoppingCart");
+            }
+
+
+            return View();
+        }
 
 
 

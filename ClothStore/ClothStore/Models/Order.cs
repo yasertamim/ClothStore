@@ -31,11 +31,38 @@
                 }
                 return total;
             }
-            set { }
+   
 
         }
 
+
+
         public bool IsCompleted { get; set; } = false;
+        public decimal ShippingTotal {
+            get
+            {
+                decimal shippingTotal = 0;
+
+                foreach (var line in Products)
+                {
+                    if (line != null)
+                    {
+                        var amountShipping = line.Amount * line.Shipping;
+                        shippingTotal += amountShipping;
+                    }
+
+                }
+                return shippingTotal;
+            }
+        }
+
+
+        public decimal Topay { get
+            {
+                return Total + ShippingTotal;
+                     
+            }
+                }
 
         public ApplicationUser? User { get; set; }
         public string? UserId { get; set; }
