@@ -13,11 +13,14 @@ namespace ClothStore.Controllers
 
         private readonly ApplicationDbContext _db;
         private readonly UserManager<ApplicationUser> _userManager;
+        private readonly SignInManager<IdentityRole> _signInManager;
         public CustomerController(ApplicationDbContext db, UserManager<ApplicationUser> userManager)
         {
             _db = db;
             _userManager = userManager;
+        
         }
+
 
 
         [HttpGet]
@@ -288,6 +291,7 @@ namespace ClothStore.Controllers
 
 
             var orderDb = await _db.Orders.FirstOrDefaultAsync(p => p.UserId.Equals(user.Id));
+            var shoppingCart = await _db.Carts.FirstOrDefaultAsync(c => c.UserId.Equals(user.Id));
 
             foreach (var p in cart.Products)
             {
@@ -297,6 +301,8 @@ namespace ClothStore.Controllers
             }
 
 
+            _db.Carts.Remove(shoppingCart);
+            await _db.SaveChangesAsync();
 
 
             return View(orderDb);
@@ -350,6 +356,56 @@ namespace ClothStore.Controllers
 
 
             return View();
+        }
+
+
+
+
+        [Authorize]
+        [HttpGet]
+        public async Task<IActionResult> Orders()
+        {
+            var user = await _userManager.GetUserAsync(User);
+            var userId = user.Id;
+
+            //   var Orders = await _db.Orders.Where(p => p.UserId == userId).ToListAsync();
+            var Orders = await _db.Orders.Include(o => o.Products.Where(P => P.Order.UserId == userId)).ToListAsync();
+
+            if (Orders != null)
+            {
+                return View(Orders);
+            }
+
+            return View(new List<Order>());
+        }
+
+        [Authorize]
+        [HttpGet]
+        public async Task<IActionResult> DeleteOrder(int id)
+        {
+
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var user = await _userManager.GetUserAsync(User);
+            var userId = user.Id;
+
+         //   var order = await _db.Orders.FirstOrDefaultAsync(m => m.Id == id && m.UserId == userId);
+            var order = await _db.Orders.Include(o => o.Products.Where(P => P.Order.UserId == userId && P.OrderId == id)).FirstOrDefaultAsync();
+
+            foreach (var p in order.Products.ToList())
+            {
+               p.OrderId = null;
+                _db.Update(p);
+                await _db.SaveChangesAsync();
+            }
+
+            _db.Orders.Remove(order);
+            await _db.SaveChangesAsync();
+
+            return RedirectToAction("Orders");
         }
 
 

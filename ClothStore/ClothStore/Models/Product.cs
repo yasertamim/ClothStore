@@ -32,13 +32,15 @@
         public int Rating { get; set; } = 0;
 
 
-        public Cart Cart { get; set; }
+        public Cart? Cart { get; set; }
 
         public int? CartId { get; set; }
 
         public int? OrderId { get; set; }
 
         public Order? Order { get; set; }
+
+        
 
 
 

@@ -23,7 +23,7 @@
 								
 								<div class="input-group w-auto justify-content-end align-items-center" style="position: absolute; margin-bottom:20px;">
 									<input type="button" value="-" class="button-minus border rounded-circle  icon-shape icon-sm mx-1 " data-field="quantity">
-									<input type="number" step="1" max="10" value="1" name="quantity" class="quantity-field border-0 text-center w-25">
+									<input type="number" step="1" max="10" value="1" name="quantity" class="quantity-field border-0 text-center w-25" id="amount">
 									<input type="button" value="+" class="button-plus border rounded-circle icon-shape icon-sm " data-field="quantity">
 								</div>
 							</div>
@@ -100,6 +100,7 @@
 
 				if (!isNaN(currentVal)) {
 					parent.find('input[name=' + fieldName + ']').val(currentVal + 1);
+					
 				} else {
 					parent.find('input[name=' + fieldName + ']').val(0);
 				}
@@ -113,6 +114,7 @@
 
 				if (!isNaN(currentVal) && currentVal > 0) {
 					parent.find('input[name=' + fieldName + ']').val(currentVal - 1);
+				
 				} else {
 					parent.find('input[name=' + fieldName + ']').val(0);
 				}
@@ -120,10 +122,12 @@
 
 			$('.input-group').on('click', '.button-plus ', function (e) {
 				incrementValue(e);
+				
 			});
 
 			$('.input-group').on('click', '.button-minus', function (e) {
 				decrementValue(e);
+			
 			});
 
 		

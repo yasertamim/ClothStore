@@ -2,7 +2,6 @@
 @model IEnumerable<Cart>
 
 
-    <h2>Your Shopping cart</h2>
 
 
 
@@ -30,11 +29,13 @@
                     <td>@p.Amount</td>
                     <td style="color:orange;">@p.Price kr</td>
                     <td>
-                        <form method="post" asp-area="" asp-action="DeleteItem" asp-controller="Customer">
-                            <input type="hidden" name="id" value="@p.Id">
-                            <button class="btn btn-danger" type="submit">Delete</button>
-                        </form>
                        
+                            <form method="post" asp-area="" asp-action="DeleteItem" asp-controller="Customer">
+                                <input type="hidden" name="id" value="@p.Id">
+                                <button class="btn btn-danger" type="submit" >Delete</button>
+                            </form>
+                        
+                 
                       
                     </td>
                 </tr>
@@ -45,7 +46,7 @@
 		}
 	}
 
-    @if (Model != null)
+    @if (Model.FirstOrDefault() != null && Model.FirstOrDefault().Products.Count() != 0)
     {
         <form method="post" asp-area="" asp-action="PlaceOrder" asp-controller="Customer">
         <input type="hidden" name="id" value="@Model.FirstOrDefault().Id">

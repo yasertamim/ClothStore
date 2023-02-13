@@ -3,23 +3,40 @@
 @inject SignInManager<ApplicationUser> SignInManager
 @inject UserManager<ApplicationUser> UserManager
 
+
 @{
-    var count = ViewData["count"];
+    var user = await UserManager.GetUserAsync(User);
+
+
+
+
 }
 
 <ul class="navbar-nav">
 @if (SignInManager.IsSignedIn(User))
 {
 
-    <li class="nav-item">
-        <a class="nav-link" asp-area="" asp-controller="Customer" asp-action="ShoppingCart" style="display:flex; justify-content: space-around;  ">
+        @if (user != null)
+        {
+            var roles = UserManager.GetRolesAsync(user);
+            if (!roles.Result.Contains("Admin"))
+            {
+                <li class="nav-item">
+                    <a class="nav-link" asp-area="" asp-controller="Customer" asp-action="ShoppingCart" style="display:flex; justify-content: space-around;  ">
 
-            <span id="cartCount" class="badge text-bg-info" style="border-radius:50%; padding:0px; padding-top: 1px; color:white; background-color:cornflowerblue; width:15px; height:15px;">@count.ToString()</span>
-            <span  class="fas fa-shopping-cart" style="margin:0px; margin-right:40px; "> <img class="cart" src="/media/cart.png" style="position:absolute; height:25px; width:25px; display:inline-block;"></span>
+                        <span id="cartCount" class="badge text-bg-info" style="border-radius:50%; padding:0px; padding-top: 1px; color:white; background-color:cornflowerblue; width:15px; height:15px;">0</span>
+                        <span class="fas fa-shopping-cart" style="margin:0px; margin-right:40px; "> <img class="cart" src="/media/cart.png" style="position:absolute; height:25px; width:25px; display:inline-block;"></span>
 
 
-        </a>
-    </li>
+                    </a>
+                </li>
+            }
+          
+
+
+        }
+
+    
     <li class="nav-item">
         <a  class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @User.Identity?.Name!</a>
     </li>
@@ -41,6 +58,4 @@ else
     </li>
 }
 </ul>
-<script>
-    document.getElementById("cartCount").value = '1';
-</script>
+

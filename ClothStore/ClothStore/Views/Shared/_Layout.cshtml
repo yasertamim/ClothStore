@@ -1,4 +1,16 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Identity
+@inject UserManager<ApplicationUser> UserManager
+@inject SignInManager<ApplicationUser> SignInManager
+
+@{
+    var user =await UserManager.GetUserAsync(User);
+  
+   
+
+   
+}
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -21,21 +33,112 @@
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
 
-                            <a class="nav-link text-dark" asp-route-id="menn" asp-area="" asp-controller="Customer" asp-action="Index" style="font-family:'Times New Roman'">Menn</a>
+                            @if (user != null)
+                            {
+                                var roles = UserManager.GetRolesAsync(user);
+                                if (roles.Result.Contains("Admin"))
+                                {
+                                    <a class="nav-link text-dark" asp-route-id="menn" asp-area="" asp-controller="Admin" asp-action="Index" style="font-family:'Times New Roman'">Men</a>
+                                }
+                                else
+                                {
+                                    <a class="nav-link text-dark" asp-route-id="menn" asp-area="" asp-controller="Customer" asp-action="Index" style="font-family:'Times New Roman'">Men</a>
+                                }
+                              
+
+                            }
+                           
+                        
+                         
 
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-route-id="women" asp-area="" asp-controller="Customer" asp-action="Index" style="font-family:'Times New Roman'">Women</a>
+                            @if (user != null)
+                            {
+                                var roles = UserManager.GetRolesAsync(user);
+                                if (roles.Result.Contains("Admin"))
+                                {
+                                    <a class="nav-link text-dark" asp-route-id="women" asp-area="" asp-controller="Admin" asp-action="Index" style="font-family:'Times New Roman'">Women</a>
+                                }
+                                else
+                                {
+                                    <a class="nav-link text-dark" asp-route-id="women" asp-area="" asp-controller="Customer" asp-action="Index" style="font-family:'Times New Roman'">Women</a>
+                                }
+
+
+                            }
+
+                           
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-route-id="babies" asp-area="" asp-controller="Customer" asp-action="Index" style="font-family:'Times New Roman'">Babies</a>
+                            @if (user != null)
+                            {
+                                var roles = UserManager.GetRolesAsync(user);
+                                if (roles.Result.Contains("Admin"))
+                                {
+                                    <a class="nav-link text-dark" asp-route-id="babies" asp-area="" asp-controller="Admin" asp-action="Index" style="font-family:'Times New Roman'">Kids</a>
+                                }
+                                else
+                                {
+                                    <a class="nav-link text-dark" asp-route-id="babies" asp-area="" asp-controller="Customer" asp-action="Index" style="font-family:'Times New Roman'">Kids</a>
+                                }
+
+
+                            }
+
+                            
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-route-id="accessories" asp-area="" asp-controller="Customer" asp-action="Index" style="font-family:'Times New Roman'">Accessories</a>
+                            @if (user != null)
+                            {
+                                var roles = UserManager.GetRolesAsync(user);
+                                if (roles.Result.Contains("Admin"))
+                                {
+                                    <a class="nav-link text-dark" asp-route-id="accessories" asp-area="" asp-controller="Admin" asp-action="Index" style="font-family:'Times New Roman'">Accessories</a>
+                                }
+                                else
+                                {
+                                    <a class="nav-link text-dark" asp-route-id="accessories" asp-area="" asp-controller="Customer" asp-action="Index" style="font-family:'Times New Roman'">Accessories</a>
+                                }
+
+
+                            }
+
+                            
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Customer" asp-action="MyOrders" style="font-family:'Times New Roman'">My orders</a>
+
+                            @if (user != null)
+                            {
+                                var roles = UserManager.GetRolesAsync(user);
+                                if (roles.Result.Contains("Admin"))
+                                {
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="UserOrders" style="font-family:'Times New Roman'">Orders</a>
+                                }
+                                else
+                                {
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Customer" asp-action="Orders" style="font-family:'Times New Roman'">My orders</a>
+                                }
+
+
+                            }
+                           
+                        </li>
+                        <li class="nav-item">
+
+                            @if (user != null)
+                            {
+                                var roles = UserManager.GetRolesAsync(user);
+                                if (roles.Result.Contains("Admin"))
+                                {
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="Create" style="font-family:'Times New Roman'">Add Item</a>
+                                }
+                               
+
+
+                            }
+
                         </li>
                     </ul>
                     <partial name="_LoginPartial" />

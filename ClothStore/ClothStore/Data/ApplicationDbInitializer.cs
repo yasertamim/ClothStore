@@ -19,6 +19,8 @@ namespace ClothStore.Data
             var adminUser = new ApplicationUser { Email = "yaser@uia.no", UserName = "yaser@uia.no", EmailConfirmed = true };
             um.CreateAsync(adminUser, "Password.1").Wait();
 
+            um.AddToRoleAsync(adminUser, "Admin").Wait();
+
             var user = new ApplicationUser { Email = "yaser@gmail.com", UserName = "yaser@gmail.com", EmailConfirmed = true };
             um.CreateAsync(user, "Password.1").Wait();
 
@@ -80,6 +82,10 @@ namespace ClothStore.Data
 
             db.Products.AddRange(products4);
             db.SaveChanges();
+
+
+
+            
 
         }
     }

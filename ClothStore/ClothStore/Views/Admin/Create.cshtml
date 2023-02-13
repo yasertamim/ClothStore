@@ -3,8 +3,8 @@
 
 
 
-<form method="post" asp-action="EditItem">
-    <input type="hidden" asp-route-id="@Model.Id" />
+<form method="post" asp-action="Create" enctype="multipart/form-data">
+
     <div class="form-group">
         <label asp-for="Title">Title</label>
         <input type="text" class="form-control" asp-for="Title" placeholder="Title">
@@ -23,9 +23,29 @@
         <label asp-for="Shipping">Shipping</label>
         <textarea class="form-control" asp-for="Shipping" rows="1"></textarea>
     </div>
-    <input type="hidden" class="form-control" asp-for="Image" value="@Model.Image" placeholder="Title" rows="4" />
-    <input type="hidden" class="form-control" asp-for="Categ" placeholder="Title" rows="4" value="@Model.Categ" />
-    <input type="hidden" class="form-control" asp-for="Rating" placeholder="Title" rows="4" value="@Model.Rating" />
+
+    <div class="form-group">
+        <label asp-for="Categ">Select category</label>
+        <select class="form-control" asp-for="Categ">
+            <option>menn</option>
+            <option>women</option>
+            <option>babies</option>
+            <option>accessories</option>
+         
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Image">Image</label>
+        
+     
+        <input type="file" name="file" class="form-control" id="file" />
+    </div>
+
+
+
+  
+ 
 
     <br />
     <button type="submit" class="btn btn-secondary">Submit</button>

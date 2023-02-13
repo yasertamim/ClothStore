@@ -21,4 +21,8 @@
     <PackageReference Include="Npgsql" Version="6.0.7" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\media\pic\" />
+  </ItemGroup>
+
 </Project>
