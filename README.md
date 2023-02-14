@@ -7,7 +7,7 @@ This application has two moudles the customer and the admin.
 Costumer have to register an account in order to complete a purchase, the unregistered user can not be able to make a purchase or place an order, however 
 unregistered users have ability to see and view the products details. 
 The admin module contains the access of admin on the application. The admin have authority to change every thing on the application. The admin have the ability to add,
-delete, update any information regarding the products.
+delete, update any information regarding the products as well as display all orders and delete them.
 
 ## who er the target audiance?
 The target audiance is every person who wants to shop clothes online.
