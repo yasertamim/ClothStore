@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
+using Stripe;
 
 namespace ClothStore.Controllers
 {
@@ -72,7 +73,7 @@ namespace ClothStore.Controllers
             }
 
 
-            return View(new List<Product>());
+            return View(new List<Models.Product>());
         }
 
 
@@ -267,7 +268,7 @@ namespace ClothStore.Controllers
             }
 
 
-            return View(new Order());
+            return View(order);
         }
 
         [Authorize]
@@ -328,7 +329,7 @@ namespace ClothStore.Controllers
             }
      
 
-            return View(new Product());
+            return View(new Models.Product());
         }
 
 
@@ -409,7 +410,119 @@ namespace ClothStore.Controllers
         }
 
 
+        [HttpGet]
+        [Authorize]
+        public async Task<IActionResult> Payment()
+        {
 
+            return View();
+
+        }
+
+        [Authorize]
+        [HttpPost]
+        public async Task<IActionResult> Payment(int id, string stripeToken)
+        {
+            var user = await _userManager.GetUserAsync(User);
+            var userId = user.Id;
+
+            var order = await _db.Orders.Include(o => o.Products.Where(P => P.Order.UserId == userId && P.OrderId == id)).FirstOrDefaultAsync();
+            if (order != null)
+            {
+                order.IsCompleted = true;
+                _db.Update(order);
+                await _db.SaveChangesAsync();
+                return RedirectToAction("Orders");
+            }
+
+            //if (order != null)
+            //{
+            //    var chargeOptions = new ChargeCreateOptions()
+            //    {
+            //        Amount = (long)(Convert.ToDouble(order.Topay) * 100),
+            //        Currency = "NOK",
+            //        Source = stripeToken,
+            //        Metadata = new Dictionary<string, string>()
+            //    {
+            //        {"OrderId", order.Id.ToString() },
+
+            //        {"Customer", order.User.Email }
+            //    }
+            //    };
+
+            //    var service = new ChargeService();
+            //    Charge charge = service.Create(chargeOptions);
+
+            //    if (charge.Status == "succeeded")
+            //    {
+            //        order.IsCompleted = true;
+            //        _db.Orders.Update(order);
+            //        await _db.SaveChangesAsync();
+            //        return RedirectToAction("MyOrders");
+            //    }
+
+            //}
+
+            return RedirectToAction("Orders");
+
+        }
+
+
+
+        [Authorize]
+        [HttpGet]
+        public async Task<IActionResult> CompleteOrder(Order order)
+
+        {
+            var user = await _userManager.GetUserAsync(User);
+          //  var order1 = await _db.Orders.FirstOrDefaultAsync(p => p.UserId.Equals(user.Id) && p.Id.Equals(order.Id));
+
+            var order1 = await _db.Orders.Include(c => c.Products.Where(p => p.OrderId.Equals(order.Id))).FirstOrDefaultAsync();
+
+
+
+            //if (cart != null)
+            //{
+            //    return View(cart);
+            //}
+
+            if (order != null)
+            {
+                return View(order1);
+            }
+
+
+            return View(new Order());
+        }
+
+        [Authorize]
+        [HttpPost]
+        public async Task<IActionResult> CompleteOrder(int id)
+
+        {
+            var user = await _userManager.GetUserAsync(User);
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+           var order =  await _db.Orders.Include(o => o.Products.Where(P => P.Order.UserId == user.Id && P.OrderId == id)).FirstOrDefaultAsync();
+
+            //await _db.AddAsync(order);
+            //await _db.SaveChangesAsync();
+
+
+            //var orderDb = await _db.Orders.FirstOrDefaultAsync(p => p.UserId.Equals(user.Id));
+            //var shoppingCart = await _db.Carts.FirstOrDefaultAsync(c => c.UserId.Equals(user.Id));
+
+            if(order == null)
+            {
+                return NotFound();
+            }
+
+
+            return View(order);
+        }
 
     }
 }

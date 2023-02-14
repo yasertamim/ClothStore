@@ -1,11 +1,12 @@
 ﻿using ClothStore.Models;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 
 namespace ClothStore.Data
 {
 	public class ApplicationDbInitializer
     {
-		public static void Initializer(ApplicationDbContext db, UserManager<ApplicationUser> um, RoleManager<IdentityRole> rm)
+		public static async void Initializer(ApplicationDbContext db, UserManager<ApplicationUser> um, RoleManager<IdentityRole> rm)
 		{
 			db.Database.EnsureDeleted();
 			db.Database.EnsureCreated();
@@ -25,6 +26,8 @@ namespace ClothStore.Data
             um.CreateAsync(user, "Password.1").Wait();
 
 
+            
+
             var products = new[]
            {
                 new Product("Shirt", Category.Categ.menn,"this shirt is awsome", 40, "/media/shirt.jpg", 0),
@@ -42,6 +45,9 @@ namespace ClothStore.Data
             
             db.Products.AddRange(products);
             db.SaveChanges();
+
+
+       
 
             var products2 = new[]
     {
@@ -85,6 +91,8 @@ namespace ClothStore.Data
 
 
 
+
+           
             
 
         }

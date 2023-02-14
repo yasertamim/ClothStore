@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "L6UFDyMuUUapGauPfTXiVOs9oaexRA0BmXxKqk5RDfNmPdTtQy9mZ9ccAnP0JiEEq6fM8/BzYlg2xY0flGrISw==",
+  "dgSpecHash": "xOVwyXvf7hdrY0U7zP0RqIVprw1TS2WydNXPuAozX5JAYN86rjkIe+ydYjSQhHaCM+CRD96PIaa07EG8oKCSRg==",
   "success": true,
   "projectFilePath": "C:\\Users\\black\\Desktop\\un\\side projects\\ClothStore\\ClothStore\\ClothStore\\ClothStore.csproj",
   "expectedPackageFiles": [
@@ -105,6 +105,7 @@
     "C:\\Users\\black\\.nuget\\packages\\runtime.ubuntu.14.04-x64.runtime.native.system.security.cryptography.openssl\\4.3.0\\runtime.ubuntu.14.04-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
     "C:\\Users\\black\\.nuget\\packages\\runtime.ubuntu.16.04-x64.runtime.native.system.security.cryptography.openssl\\4.3.0\\runtime.ubuntu.16.04-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
     "C:\\Users\\black\\.nuget\\packages\\runtime.ubuntu.16.10-x64.runtime.native.system.security.cryptography.openssl\\4.3.0\\runtime.ubuntu.16.10-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
+    "C:\\Users\\black\\.nuget\\packages\\stripe.net\\41.6.0\\stripe.net.41.6.0.nupkg.sha512",
     "C:\\Users\\black\\.nuget\\packages\\system.appcontext\\4.3.0\\system.appcontext.4.3.0.nupkg.sha512",
     "C:\\Users\\black\\.nuget\\packages\\system.buffers\\4.3.0\\system.buffers.4.3.0.nupkg.sha512",
     "C:\\Users\\black\\.nuget\\packages\\system.collections\\4.3.0\\system.collections.4.3.0.nupkg.sha512",

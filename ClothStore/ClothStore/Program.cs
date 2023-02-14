@@ -2,11 +2,15 @@ using ClothStore.Data;
 using ClothStore.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Stripe;
 
 var builder = WebApplication.CreateBuilder(args);
 
+
 // Add services to the container.
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+StripeConfiguration.ApiKey = builder.Configuration.GetValue<string>("Stripe:sk_test_51Mb9flHVnv2ZHF9dYSdfNzDExAFpQrmZByBvtcgmD7TCfBB7ybRdjCeVpUwQwcrViSsg35rMoUthIzYmGXXlxTQC00curYxRvP");
+
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();

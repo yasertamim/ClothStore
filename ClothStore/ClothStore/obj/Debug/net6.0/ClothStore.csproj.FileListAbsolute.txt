@@ -272,3 +272,4 @@ C:\Users\black\Desktop\un\side projects\ClothStore\ClothStore\ClothStore\obj\Deb
 C:\Users\black\Desktop\un\side projects\ClothStore\ClothStore\ClothStore\obj\Debug\net6.0\ClothStore.pdb
 C:\Users\black\Desktop\un\side projects\ClothStore\ClothStore\ClothStore\obj\Debug\net6.0\ClothStore.genruntimeconfig.cache
 C:\Users\black\Desktop\un\side projects\ClothStore\ClothStore\ClothStore\obj\Debug\net6.0\ref\ClothStore.dll
+C:\Users\black\Desktop\un\side projects\ClothStore\ClothStore\ClothStore\bin\Debug\net6.0\Stripe.net.dll

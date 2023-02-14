@@ -5,17 +5,17 @@
 <h1>Complete your purchase</h1>
 
 
-    <div class="card" style="width: 18rem;">
-        <div class="card-body">
-            <h5 class="card-title">Your Order</h5>
-            <div class="row">
-                <div class="col">
-                    <h4>Products</h4>
-                </div>
-                <div class="col">
-                    <p>@Model.Total kr</p>
-                </div>
+<div class="card" style="width: 18rem;">
+    <div class="card-body">
+        <h5 class="card-title">Your Order</h5>
+        <div class="row">
+            <div class="col">
+                <h4>Products</h4>
             </div>
+            <div class="col">
+                <p>@Model.Total kr</p>
+            </div>
+        </div>
         <div class="row">
             <div class="col">
                 <h4>Shipping </h4>
@@ -23,7 +23,7 @@
             <div class="col">
                 @if (@Model.ShippingTotal == 0)
                 {
-                    <p class="card-text" >Free shipping</p>
+                    <p class="card-text">Free shipping</p>
                 }
                 else
                 {
@@ -33,7 +33,7 @@
         </div>
         <div class="row">
             <div class="col">
-               
+
                 <h4>Total</h4>
             </div>
             <div class="col">
@@ -41,21 +41,20 @@
                 {
                     <p>@Model.Total kr</p>
                 }
-                else{
+                else
+                {
                     var ToPay = Model.Total + Model.ShippingTotal;
                     <p>@ToPay  kr</p>
                 }
-               
+
             </div>
         </div>
-            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
         <form method="post" asp-area="" asp-action="Payment" asp-controller="Customer">
             @Html.HiddenFor(n => n.Id)
             <input type="hidden" name="id" value="@Model.Id">
             <script src="https://checkout.stripe.com/checkout.js"
                     class="stripe-button"
- 
-         
                     data-key="pk_test_51Mb9flHVnv2ZHF9dyw6nCPi8hovnbmT42rdniQbsJSxBtDSlSAM4jV697O37aCRDno5GYLt13WJQUXSp2QELvG1p00xIta1zvt"
                     data-name="Cloth store Payment"
                     data-description="@Model.User.Email - @Model.Topay"
@@ -64,7 +63,7 @@
             </script>
 
         </form>
-        </div>
     </div>
+</div>
 
 

@@ -168,6 +168,8 @@ namespace ClothStore.Controllers
         {
             return View();
         }
+
+
         [HttpPost]
         [Authorize(Roles = "Admin")]
         // create new post
@@ -206,10 +208,18 @@ namespace ClothStore.Controllers
         [HttpGet]
         public async Task<IActionResult> UserOrders()
         {
-          
+
+            var Orders = await _db.Orders.Include(o => o.Products).ToListAsync();
+
+            if (Orders != null)
+            {
+                return View(Orders);
+            }
 
             return View(new List<Order>());
         }
+
+
 
         [Authorize(Roles = "Admin")]
         [HttpGet]
@@ -218,6 +228,35 @@ namespace ClothStore.Controllers
 
 
             return View(new Order());
+        }
+
+
+        [Authorize(Roles = "Admin")]
+        [HttpGet]
+        public async Task<IActionResult> DeleteOrder(int id)
+        {
+
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            
+
+      
+            var order = await _db.Orders.Include(o => o.Products.Where(p => p.OrderId.Equals(id))).FirstOrDefaultAsync();
+
+            foreach (var p in order.Products.ToList())
+            {
+                p.OrderId = null;
+                _db.Update(p);
+                await _db.SaveChangesAsync();
+            }
+
+            _db.Orders.Remove(order);
+            await _db.SaveChangesAsync();
+
+            return RedirectToAction("UserOrders");
         }
 
 
