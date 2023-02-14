@@ -22,12 +22,19 @@ The user can select the between four alternatives(category) menn,women, babies a
 will be displayed. there he will choose the product that he wants to buy.
 
 ### How to place an order?
-First, the user has to log in, then he can choose the category. when a page of products of this spesific category
-pops up, so he can select a prodect that he wants to buy, thereafter he will click on show details, there he can 
-make a purchase.
+-	The user logs in
+-	The user selects the category.
+-	The user selects an item.
+-	The user chooses the amount of the product.
+-	The user adds the item to Cart.
+-	Since the user is finished shopping, he places order.
+-	Then the items in the cart will become an order
+-	The user press confirm-payment.
+-	The user will be navigated to the payment gateway.
+-	Since the payment is completed, the user is navigated back to the My Orders page.
 
 ### How to pay for the order?
-the user can pay throuw credit cards or PayPal.
+the user can pay throuw credit cards.
 
 
 ## Project features:
@@ -46,6 +53,8 @@ the user can pay throuw credit cards or PayPal.
 - add product
 - update product
 - delete product
+- display all orders
+- delete order
 
 ## User stories (Costumer):
 - As a user i want to be able to register and log in so that so thst i can see all products 
@@ -54,17 +63,32 @@ the user can pay throuw credit cards or PayPal.
 - As a user i want to be able to delete my orders
 
 ## Pages in the application:
-- Registeration 
-- Log in
-- Home (landing page)
-- Home (Products)
-- Details (Product) for user
-- Details (Product) for admin
-- Payment 
-- ShopingCurve (Orders)
-- Add product
-- Update product
-- Delete product
+### Views (Customer):
+   -	Index (landing page-customer-admin) Home
+   -	Index (display products after category) 
+   -	Details (display product information)
+   -	Cart (list products)
+   - ShoppingCart
+   - PlaceOrder
+   - CompleteOrder
+   -	DeleteItem (display item will be deleted)
+   -	MyOrder (display the current order after placing order from Cart)
+   -	Orders (display all orders)
+   -	DeleteOrder (display selected order)
+   -	Rating (give rate to a selected product)
+   -	Payment (display payment information)
+   
+### Views (Admin):
+   -	Index (landing page-customer-admin) Home
+   -	Index (display products after category) 
+   -	Details (display product information with options)
+   -	EditItem (editing the selected item)
+   -	DeleteItem (deleting the selected item)
+   -	ManageOrders (display all orders in database with ability to filter after user id)
+   -	UserOrders (display the selected order)
+   -	DeleteOrder (delete the selected order)
+
+
 
 ## Project requirments:
 - Software:
