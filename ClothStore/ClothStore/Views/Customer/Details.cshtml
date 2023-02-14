@@ -9,6 +9,7 @@
 				<img src="@Model.Image" style="width:500px; height:500px;"/>
 			</span>
 		</div>
+	
 		<div class="col">
 			<h3 style="color: orange;">@Model.Price kr</h3>
 			<div>
@@ -17,13 +18,14 @@
 					<div class="mb-4 border-bottom pb-2">
 						<h4 class="mb-0">Quantity</h4>
 					</div>
+					<form method="post" asp-action="Cart">
 					<div class="row">
 						<div class="col-12">
 							<div class="d-flex justify-content-between">
 								
 								<div class="input-group w-auto justify-content-end align-items-center" style="position: absolute; margin-bottom:20px;">
 									<input type="button" value="-" class="button-minus border rounded-circle  icon-shape icon-sm mx-1 " data-field="quantity">
-									<input type="number" step="1" max="10" value="1" name="quantity" class="quantity-field border-0 text-center w-25" id="amount">
+									<input type="number" step="1" max="10" value="1" name="amount" class="quantity-field border-0 text-center w-25" id="amount">
 									<input type="button" value="+" class="button-plus border rounded-circle icon-shape icon-sm " data-field="quantity">
 								</div>
 							</div>
@@ -80,7 +82,7 @@
 					<div class="w-100"></div>
 					<div class="col"></div>
 					<div class="col">
-						<form method="post" asp-action="Cart">
+						
 							<input type="hidden" value="@Model.Id" name="id"></input>
 								<div><button type="submit" class="cart-btn">Add to cart</button></div>
 						</form>

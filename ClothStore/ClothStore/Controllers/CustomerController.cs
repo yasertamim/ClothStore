@@ -178,7 +178,7 @@ namespace ClothStore.Controllers
         [Authorize]
         [HttpPost]
    
-        public async Task<IActionResult> Cart(int id)
+        public async Task<IActionResult> Cart(int id, int amount)
         {
             var user = await _userManager.GetUserAsync(User);
 
@@ -208,6 +208,7 @@ namespace ClothStore.Controllers
                 var cartInit = await _db.Carts.FirstOrDefaultAsync(p => p.UserId.Equals(user.Id));
          
                 product.CartId = cartInit.Id;
+                product.Amount = amount;
 
                 _db.Products.Update(product);
                 await _db.SaveChangesAsync();
@@ -224,6 +225,7 @@ namespace ClothStore.Controllers
                 var cart = await _db.Carts.FirstOrDefaultAsync(p => p.UserId.Equals(user.Id));
 
                 product.CartId = cart.Id;
+                product.Amount = amount;
 
                 _db.Products.Update(product);
                 await _db.SaveChangesAsync();
